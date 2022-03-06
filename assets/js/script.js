@@ -1,3 +1,5 @@
+// rip to the typo in this branch
+
 // set global variables for IDs
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
@@ -57,6 +59,8 @@ var completeEditTask = function(taskName, taskType, taskId) {
 
     formEl.removeAttribute("data-task-id");
     document.querySelector("#save-task").textContent = "Add Task";
+
+saveTasks();
 };
 
 var createTaskEl = function(taskDataObj) {
@@ -87,6 +91,8 @@ var createTaskEl = function(taskDataObj) {
 
     // increase task counter for next unique id
     taskIdCounter++;
+
+saveTasks();
 };
 
 var createTaskActions = function(taskId) {
@@ -160,6 +166,9 @@ var deleteTask = function(taskId) {
     }
 
 tasks = updatedTaskArr;
+
+saveTasks();
+
 };
 
 var editTask = function(taskId) {
@@ -195,8 +204,12 @@ var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId +
         }
     }
 
-    console.log(tasks);
+saveTasks();
 };
+
+var saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 pageContentEl.addEventListener("click", taskButtonHandler);
 // call function
