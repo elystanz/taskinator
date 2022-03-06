@@ -19,7 +19,8 @@ var taskFormHandler = function(event) {
         return false
     }
 
-    formEl.reset();
+    document.querySelector("input[name='task-name']").value = "";
+    document.querySelector("select[name='task-type']").selectedIndex = 0;
 
     var isEdit = formEl.hasAttribute("data-task-id");
     if (isEdit) {
@@ -108,8 +109,8 @@ var createTaskActions = function(taskId) {
     for (var i = 0; i < statusChoices.length; i++) {
         // create option element
         var statusOptionEl = document.createElement("option");
-        statusOptionEl.textConent = statusChoices[i];
         statusOptionEl.setAttribute("value", statusChoices[i]);
+        statusOptionEl.textConent = statusChoices[i];
 
         statusSelectEl.appendChild(statusOptionEl);
     }
